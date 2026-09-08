@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*.FCBak
+*.blend1
+*.blend2
+*.FCStd1
+revision_1_original.zip
+surround-speaker-mount.zip
+*.log
+core
+core.*

@@ -1,0 +1,35 @@
+{
+  "Part_1_WallPlate": {
+    "nonmanifold_edges": 0,
+    "components": 1,
+    "volume_mm3": 188634.01858004762,
+    "repaired_small_quads": 0,
+    "print_bounds_mm": [
+      140.0,
+      77.0,
+      90.00001525878906
+    ]
+  },
+  "Part_2_SwivelArm": {
+    "nonmanifold_edges": 0,
+    "components": 1,
+    "volume_mm3": 96775.76071427595,
+    "repaired_small_quads": 0,
+    "print_bounds_mm": [
+      44.0,
+      99.0,
+      48.60000228881836
+    ]
+  },
+  "Part_3_Cradle": {
+    "nonmanifold_edges": 0,
+    "components": 1,
+    "volume_mm3": 520248.0015035794,
+    "repaired_small_quads": 0,
+    "print_bounds_mm": [
+      68.40001678466797,
+      215.0,
+      186.0
+    ]
+  }
+}

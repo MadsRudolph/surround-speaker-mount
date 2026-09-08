@@ -1,0 +1,32 @@
+{
+  "Part_1_WallPlate": {
+    "valid": true,
+    "solids": 1,
+    "volume_mm3": 188752.150267587,
+    "print_bounds_mm": [
+      140.0,
+      76.99472985747484,
+      90.00000000000001
+    ]
+  },
+  "Part_2_SwivelArm": {
+    "valid": true,
+    "solids": 1,
+    "volume_mm3": 96828.06079476367,
+    "print_bounds_mm": [
+      44.00000000000001,
+      98.99027488340828,
+      48.60000000000001
+    ]
+  },
+  "Part_3_Cradle": {
+    "valid": true,
+    "solids": 1,
+    "volume_mm3": 520401.76998391503,
+    "print_bounds_mm": [
+      68.40000000000005,
+      214.99608289101576,
+      186.0
+    ]
+  }
+}

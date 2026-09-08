@@ -1,0 +1,108 @@
+"""Open the assembly with convenient pan/tilt sliders in FreeCAD."""
+from pathlib import Path
+import FreeCAD as App
+import FreeCADGui as Gui
+from PySide import QtCore, QtGui
+try:
+    from PySide import QtWidgets
+except ImportError:
+    from PySide import QtGui as QtWidgets
+root=Path(__file__).resolve().parent
+path=root/'output_freecad/interactive_assembly_visible.FCStd'
+doc=next((d for d in App.listDocuments().values() if d.FileName==str(path)),None)
+if doc is None:doc=App.openDocument(str(path))
+App.setActiveDocument(doc.Name)
+for name in ['PanJoint','TiltJoint','Part_1_WallPlate','Part_1_WallPlate_Solid','Part_2_SwivelArm','Part_2_SwivelArm_Solid','Part_3_Cradle','Part_3_Cradle_Solid','SpeakerEnvelope','TerminalPanel']:
+    doc.getObject(name).ViewObject.Visibility=True
+colors={'Part_1_WallPlate':(.22,.32,.40),'Part_2_SwivelArm':(.75,.36,.12),'Part_3_Cradle':(.23,.45,.49),'SpeakerEnvelope':(.10,.11,.12),'TerminalPanel':(.02,.02,.02)}
+for name,color in colors.items():
+    obj=doc.getObject(name)
+    if obj:
+        obj.ViewObject.ShapeColor=color
+        if hasattr(obj,'Tip') and obj.Tip:obj.Tip.ViewObject.ShapeColor=color
+Gui.activeDocument().activeView().viewAxonometric()
+Gui.activeDocument().activeView().fitAll()
+window=Gui.getMainWindow()
+old=window.findChild(QtWidgets.QDockWidget,'SpeakerAimingDock')
+if old:old.close();old.deleteLater()
+dock=QtWidgets.QDockWidget('Speaker — Pan & Tilt',window)
+dock.setObjectName('SpeakerAimingDock')
+widget=QtWidgets.QWidget();layout=QtWidgets.QVBoxLayout(widget)
+layout.addWidget(QtWidgets.QLabel('Drag in the pad below to aim the speaker live.'))
+sliders=[]
+for prop,low,high in [('Pan',-60,60),('Tilt',-30,0)]:
+    label=QtWidgets.QLabel()
+    slider=QtWidgets.QSlider(QtCore.Qt.Horizontal)
+    slider.setObjectName(prop + "Slider")
+    slider.setTracking(True)
+    slider.setRange(low*10,high*10)
+    slider.setValue(round(getattr(doc.AimControls,prop)*10))
+    def changed(value,prop=prop,label=label,docname=doc.Name):
+        target=App.getDocument(docname)
+        if target:
+            setattr(target.AimControls,prop,value/10)
+            target.recompute()
+            Gui.activeDocument().activeView().redraw()
+            label.setText(f'{prop}: {value/10:.1f}°')
+    slider.valueChanged.connect(changed)
+    changed(slider.value())
+    layout.addWidget(label);layout.addWidget(slider);sliders.append(slider)
+class AimPad(QtWidgets.QWidget):
+    def __init__(self,controls,parent=None):
+        super().__init__(parent)
+        self.controls=controls
+        self.anchor=None
+        self.setMinimumSize(280,180)
+        self.setCursor(QtCore.Qt.OpenHandCursor)
+        self.setToolTip('Hold the left mouse button and drag: left/right = pan; up/down = tilt.')
+        for slider in controls:slider.valueChanged.connect(lambda *_: self.update())
+    def paintEvent(self,event):
+        painter=QtGui.QPainter(self)
+        painter.fillRect(self.rect(),QtGui.QColor('#22313b'))
+        painter.setPen(QtGui.QPen(QtGui.QColor('#718794'),1))
+        painter.drawLine(self.width()//2,15,self.width()//2,self.height()-15)
+        painter.drawLine(15,self.height()//2,self.width()-15,self.height()//2)
+        pan=self.controls[0].value()/10
+        tilt=self.controls[1].value()/10
+        x=20+(pan+60)/120*(self.width()-40)
+        y=20+(-tilt)/30*(self.height()-40)
+        painter.setBrush(QtGui.QColor('#e9aa59'))
+        painter.setPen(QtGui.QColor('#ffd593'))
+        painter.drawEllipse(QtCore.QPointF(x,y),7,7)
+        painter.setPen(QtGui.QColor('#ffffff'))
+        painter.drawText(self.rect().adjusted(10,5,-10,-5),QtCore.Qt.AlignTop|QtCore.Qt.AlignHCenter,'LEFT / RIGHT = PAN')
+        painter.drawText(self.rect().adjusted(10,5,-10,-5),QtCore.Qt.AlignBottom|QtCore.Qt.AlignHCenter,'UP / DOWN = TILT')
+    def mousePressEvent(self,event):
+        if event.button()==QtCore.Qt.LeftButton:
+            self.anchor=event.position()
+            self.start=[s.value() for s in self.controls]
+            self.setCursor(QtCore.Qt.ClosedHandCursor)
+            event.accept()
+    def mouseMoveEvent(self,event):
+        if self.anchor is not None:
+            delta=event.position()-self.anchor
+            self.controls[0].setValue(round(self.start[0]+delta.x()*1200/max(1,self.width()-40)))
+            self.controls[1].setValue(round(self.start[1]-delta.y()*300/max(1,self.height()-40)))
+            event.accept()
+    def mouseReleaseEvent(self,event):
+        self.anchor=None
+        self.setCursor(QtCore.Qt.OpenHandCursor)
+        event.accept()
+pad=AimPad(sliders)
+pad.setObjectName('LiveAimPad')
+layout.insertWidget(1,pad)
+reset=QtWidgets.QPushButton('Reset to level / straight')
+reset.clicked.connect(lambda:[s.setValue(0) for s in sliders])
+layout.addWidget(reset)
+layout.addWidget(QtWidgets.QLabel('Limits: pan ±60°; tilt −30° to 0°.'))
+dock.setWidget(widget)
+window.addDockWidget(QtCore.Qt.RightDockWidgetArea,dock)
+dock.show()
+Gui.Selection.clearSelection()
+Gui.Selection.addSelection(doc.AimControls)
+
+# Keep Python widgets/callbacks alive after the macro execution namespace ends.
+dock._aim_pad=pad
+dock._aim_sliders=sliders
+Gui._speaker_aim_dock=dock
+print('LIVE_AIM_READY: drag the pad or either slider in Speaker — Pan & Tilt')

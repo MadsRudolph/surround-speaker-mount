@@ -1,0 +1,32 @@
+{
+  "collision_free_samples": 91,
+  "pan_step_deg": 10,
+  "tilt_step_deg": 5,
+  "scope": "Default geometry and speaker envelope; includes provisional 50x70 mm terminal envelope projecting 30 mm; no fasteners, flexible cable, foam or deformation",
+  "parameter_recompute": {
+    "Speaker_Width": {
+      "test_value_mm": 160,
+      "volume_changed": true
+    },
+    "Speaker_Depth": {
+      "test_value_mm": 160,
+      "volume_changed": true
+    },
+    "Speaker_Height": {
+      "test_value_mm": 190,
+      "volume_changed": true
+    },
+    "Clamp_Padding_Offset": {
+      "test_value_mm": 2.5,
+      "volume_changed": true
+    },
+    "Insert_Hole_Diameter": {
+      "test_value_mm": 5.8,
+      "volume_changed": true
+    },
+    "Wall_Thickness": {
+      "test_value_mm": 5,
+      "volume_changed": true
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "output_freecad/Part_1_WallPlate.stl": {
+    "facets": 36268,
+    "solid": true,
+    "nonmanifold": false
+  },
+  "output_freecad/Part_2_SwivelArm.stl": {
+    "facets": 42076,
+    "solid": true,
+    "nonmanifold": false
+  },
+  "output_freecad/Part_3_Cradle.stl": {
+    "facets": 54000,
+    "solid": true,
+    "nonmanifold": false
+  },
+  "output_blender/Part_1_WallPlate.stl": {
+    "facets": 8298,
+    "solid": true,
+    "nonmanifold": false
+  },
+  "output_blender/Part_2_SwivelArm.stl": {
+    "facets": 6154,
+    "solid": true,
+    "nonmanifold": false
+  },
+  "output_blender/Part_3_Cradle.stl": {
+    "facets": 10692,
+    "solid": true,
+    "nonmanifold": false
+  }
+}

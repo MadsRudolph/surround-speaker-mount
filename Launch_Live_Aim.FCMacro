@@ -1,0 +1,26 @@
+from pathlib import Path
+import json
+root=Path(__file__).resolve().parent
+macro=root/'Open_Interactive_Assembly.FCMacro'
+namespace={'__file__':str(macro),'__name__':'__main__'}
+exec(compile(macro.read_text(),str(macro),'exec'),namespace)
+# Verify live callbacks and drag events, then restore the starting pose.
+sliders=namespace['sliders'];doc=namespace['doc'];pad=namespace['pad']
+QtCore=namespace['QtCore']
+initial=[s.value() for s in sliders]
+sliders[0].setValue(0);sliders[1].setValue(-100)
+class TestMouse:
+    def __init__(self,x,y):self.pos=QtCore.QPointF(x,y)
+    def position(self):return self.pos
+    def button(self):return QtCore.Qt.LeftButton
+    def accept(self):pass
+pad.mousePressEvent(TestMouse(100,80))
+pad.mouseMoveEvent(TestMouse(130,100))
+pad.mouseReleaseEvent(TestMouse(130,100))
+assert doc.AimControls.Pan>0
+assert doc.AimControls.Tilt < -10
+assert abs(doc.AimControls.Pan-sliders[0].value()/10)<1e-8
+assert abs(doc.AimControls.Tilt-sliders[1].value()/10)<1e-8
+(root/'live_drag_validation.json').write_text(json.dumps({'drag_callback_passed':True,'pan_degrees':doc.AimControls.Pan,'tilt_degrees':doc.AimControls.Tilt},indent=2))
+for slider,value in zip(sliders,initial):slider.setValue(value)
+print('LIVE_DRAG_VERIFIED — ready for mouse dragging')
