@@ -12,7 +12,7 @@
   "Part_2_SwivelArm": {
     "valid": true,
     "solids": 1,
-    "volume_mm3": 96828.06079476367,
+    "volume_mm3": 96682.77495945313,
     "print_bounds_mm": [
       44.00000000000001,
       98.99027488340828,
@@ -22,7 +22,7 @@
   "Part_3_Cradle": {
     "valid": true,
     "solids": 1,
-    "volume_mm3": 520401.76998391503,
+    "volume_mm3": 520532.52697352215,
     "print_bounds_mm": [
       68.40000000000005,
       214.99608289101576,

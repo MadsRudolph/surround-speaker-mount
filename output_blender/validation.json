@@ -13,7 +13,7 @@
   "Part_2_SwivelArm": {
     "nonmanifold_edges": 0,
     "components": 1,
-    "volume_mm3": 96775.76071427595,
+    "volume_mm3": 96630.47479085869,
     "repaired_small_quads": 0,
     "print_bounds_mm": [
       44.0,
@@ -24,7 +24,7 @@
   "Part_3_Cradle": {
     "nonmanifold_edges": 0,
     "components": 1,
-    "volume_mm3": 520248.0015035794,
+    "volume_mm3": 520378.7585492042,
     "repaired_small_quads": 0,
     "print_bounds_mm": [
       68.40001678466797,

@@ -1,0 +1,36 @@
+{
+  "tilt_step_deg": 5,
+  "teeth": 72,
+  "tooth_height_mm": 0.45,
+  "female_depth_mm": 0.5,
+  "tooth_ring_radii_mm": [
+    16.0,
+    21.0
+  ],
+  "nominal_face_gaps_mm": [
+    0.3,
+    0.3
+  ],
+  "release_translation_from_nominal_mm": 0.3,
+  "release_travel_from_seated_mm": 0.6,
+  "released_tip_clearance_mm": 0.15,
+  "indexed_angles_deg": [
+    -30,
+    -25,
+    -20,
+    -15,
+    -10,
+    -5,
+    0
+  ],
+  "mid_step_interference_mm3": {
+    "-27.5": 103.22830138568817,
+    "-22.5": 103.22830138568825,
+    "-17.5": 103.22830138568803,
+    "-12.5": 103.22830138568808,
+    "-7.5": 103.22830138568818,
+    "-2.5": 103.22830138568831
+  },
+  "released_sweep_samples": 61,
+  "scope": "Geometric indexing and axial release only. No strength, creep, wear or print-fit qualification."
+}

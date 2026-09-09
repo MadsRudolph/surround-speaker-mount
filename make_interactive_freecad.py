@@ -13,7 +13,7 @@ ctrl.Label='AIM CONTROLS — edit Pan / Tilt below'
 ctrl.addProperty('App::PropertyFloatConstraint','Pan','Aiming','Degrees about vertical wall pivot')
 ctrl.Pan=(0.,-60.,60.,.1)
 ctrl.addProperty('App::PropertyFloatConstraint','Tilt','Aiming','Degrees about horizontal cradle pivot')
-ctrl.Tilt=(0.,-30.,0.,.1)
+ctrl.Tilt=(0.,-30.,0.,5.)
 yaw=doc.addObject('App::Part','PanJoint')
 yaw.Label='Pan joint — vertical Z axis'
 yaw.Placement=App.Placement(V(0,55,24),App.Rotation(V(0,0,1),0))
@@ -22,7 +22,7 @@ pitch=doc.addObject('App::Part','TiltJoint')
 pitch.Label='Tilt joint — local X axis'
 yaw.addObject(pitch)
 pitch.Placement=App.Placement(V(0,55,0),App.Rotation(V(1,0,0),0))
-pitch.setExpression('Placement.Rotation.Angle','AimControls.Tilt * 1 deg')
+pitch.setExpression('Placement.Rotation.Angle','round(AimControls.Tilt / 5) * 5 deg')
 # Explicit axis assignment survives the zero-angle identity rotation.
 yaw.setExpression('Placement.Rotation.Axis.x','0')
 yaw.setExpression('Placement.Rotation.Axis.y','0')
@@ -50,7 +50,7 @@ doc.recompute()
 for pan,tilt in [(0,0),(60,-30),(-60,-30),(25,-12)]:
     ctrl.Pan=pan;ctrl.Tilt=tilt;doc.recompute()
     expected_yaw=App.Placement(V(0,55,24),App.Rotation(V(0,0,1),pan))
-    expected_pitch=expected_yaw.multiply(App.Placement(V(0,55,0),App.Rotation(V(1,0,0),tilt)))
+    expected_pitch=expected_yaw.multiply(App.Placement(V(0,55,0),App.Rotation(V(1,0,0),round(tilt/5)*5)))
     for actual,expected in [(yaw.getGlobalPlacement(),expected_yaw),(pitch.getGlobalPlacement(),expected_pitch)]:
         for point in [V(),V(1,0,0),V(0,1,0),V(0,0,1)]:
             assert (actual.multVec(point)-expected.multVec(point)).Length<1e-7

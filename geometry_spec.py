@@ -5,6 +5,44 @@ NAMES = ['Part_1_WallPlate', 'Part_2_SwivelArm', 'Part_3_Cradle']
 YAW = (0.,55.,24.)
 PITCH = (0.,110.,24.)
 
+# Revision 3: only the pitch joint indexes; yaw remains a friction swivel.
+TILT_STEP_DEG = 5
+TILT_TEETH = 72
+TILT_RING_INNER = 16.0
+TILT_RING_OUTER = 21.0
+TILT_GROOVE_DEPTH = 0.50
+TILT_TOOTH_HEIGHT = 0.45
+TILT_RELEASE_TRAVEL = 0.30  # +X from nominal; 0.15 mm tooth-tip clearance
+
+def serration_mesh(center, axis, height):
+    """Closed annular cutter/addition, pointing in -axis, with 72 radial teeth.
+
+    The 0.05 mm backing overlaps the parent body (or lies outside the cutter
+    face). Broad tooth crests/valleys occupy 30% of each 5-degree period.
+    Female height .50 mm; male .45 mm leaves slight flank/root relief.
+    """
+    import math
+    phases = (0.0, .15, .35, .65, .85)
+    levels = (0.0, 0.0, 1.0, 1.0, 0.0)
+    vertices = []
+    for tooth in range(TILT_TEETH):
+        for phase, level in zip(phases, levels):
+            a = 2 * math.pi * (tooth + phase) / TILT_TEETH
+            for radius, z in [(TILT_RING_INNER, -height*level),
+                              (TILT_RING_OUTER, -height*level),
+                              (TILT_RING_INNER, .05), (TILT_RING_OUTER, .05)]:
+                u, v = radius*math.cos(a), radius*math.sin(a)
+                local = (z,u,v) if axis == 'X' else (u,v,z)
+                vertices.append(tuple(center[k]+local[k] for k in range(3)))
+    faces = []
+    count = len(vertices)//4
+    for i in range(count):
+        a,b,c,d = [4*i+k for k in range(4)]
+        e,f,g,h = [4*((i+1)%count)+k for k in range(4)]
+        faces.extend([(a,e,f),(a,f,b), (c,d,h),(c,h,g),
+                      (a,c,g),(a,g,e), (b,f,h),(b,h,d)])
+    return vertices, faces
+
 def geometry(p):
     w,d,h,pad,insert,t = [p[k] for k in DEFAULTS]
     if not (100 <= w <= 200 and 100 <= d <= 200 and 120 <= h <= 240
@@ -63,4 +101,10 @@ def geometry(p):
             cyl(2,(x,y,h*.27),10,side+4,'X')
             cyl(2,(x-1,y,h*.27),insert/2,side+6,'X',0,True)
     cyl(2,(-14,110,24),2.65,28,'X',0,True)
+    # One toothed face only: the cradle can slide +X into the opposite
+    # 0.3 mm cheek gap to disengage, without prying either clevis ear apart.
+    # Recessed female face is on the arm's left cheek; raised male face is
+    # integral to the cradle's left pitch face. The other face stays flat.
+    parts[1][1].append(('serrated',(-12.3,110,24),'X',TILT_GROOVE_DEPTH))
+    parts[2][0].append(('serrated',(-12,110,24),'X',TILT_TOOTH_HEIGHT))
     return parts

@@ -1,7 +1,7 @@
 # Compact speaker mount — print files
 
 Print 2 × each STL for a pair of speakers (six printed parts total).
-These are the compact revision 2 FreeCAD exports, already oriented on their X sides.
+These are the compact revision 3 FreeCAD exports, already oriented on their X sides.
 Import in millimetres and do not auto-scale.
 
 | File | Quantity for pair | Bounding box X × Y × Z |
@@ -22,3 +22,24 @@ wall fixings and assembly. The insert bore is 5.6 mm: confirm it matches your in
 The terminal panel is assumed 40 mm wide, 60 mm tall, starting 40 mm above the
 cabinet bottom, with 30 mm rear plug projection; panel height/projection are unconfirmed.
 This is a prototype without a load rating; inspect and load-test before wall use.
+
+## Indexed tilt interface
+
+The up/down pivot now seats in **5° steps** using a 72-tooth mating ring. Pan stays
+smooth and continuously adjustable. Reprint both arm and cradle; the wall plate
+is unchanged. Do not mix smooth revision 2 and toothed revision 3 mating parts.
+
+Print `fit-coupons/Tilt_Female_Coupon.stl` and `fit-coupons/Tilt_Male_Coupon.stl`
+first, with toothed faces up. Inspect the slicer for preserved teeth. Use
+0.10–0.12 mm layers through the teeth and check fit without forcing. The minimum
+nominal crest width is about 0.42 mm, so a 0.4 mm nozzle is at the fine-feature
+limit. Adjust the process or use a smaller nozzle if details are lost.
+
+The arm print orientation is flipped from revision 2 to point its toothed face
+up. Keep support contact off the teeth and route supports for the opposing ear
+from smooth areas or the bed. The cradle also has its toothed face pointing up.
+
+Support the speaker, loosen the tilt bolt, slide the cradle toward the smooth
+cheek to clear the teeth, choose a 5° position, seat and retighten. Do not ratchet
+the teeth under load. Nominal release travel from seated is 0.6 mm. Printed fit,
+tooth strength and holding performance remain unverified.

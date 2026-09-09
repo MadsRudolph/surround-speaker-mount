@@ -36,8 +36,11 @@ for prop,low,high in [('Pan',-60,60),('Tilt',-30,0)]:
     slider.setObjectName(prop + "Slider")
     slider.setTracking(True)
     slider.setRange(low*10,high*10)
+    slider.setSingleStep(50 if prop=='Tilt' else 1)
+    slider.setPageStep(50 if prop=='Tilt' else 10)
     slider.setValue(round(getattr(doc.AimControls,prop)*10))
     def changed(value,prop=prop,label=label,docname=doc.Name):
+        if prop=='Tilt':value=round(value/50)*50
         target=App.getDocument(docname)
         if target:
             setattr(target.AimControls,prop,value/10)
@@ -94,7 +97,7 @@ layout.insertWidget(1,pad)
 reset=QtWidgets.QPushButton('Reset to level / straight')
 reset.clicked.connect(lambda:[s.setValue(0) for s in sliders])
 layout.addWidget(reset)
-layout.addWidget(QtWidgets.QLabel('Limits: pan ±60°; tilt −30° to 0°.'))
+layout.addWidget(QtWidgets.QLabel('Limits: pan ±60°; tilt −30° to 0° in 5° steps.'))
 dock.setWidget(widget)
 window.addDockWidget(QtCore.Qt.RightDockWidgetArea,dock)
 dock.show()

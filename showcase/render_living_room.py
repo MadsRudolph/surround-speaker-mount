@@ -109,7 +109,7 @@ mount_locations=[]
 def mounted(name,wall,rotation,pan):
     base=Matrix.Translation(wall)@Matrix.Rotation(rotation,4,'Z')
     yaw=Matrix.Translation((0,.055,.024))@Matrix.Rotation(math.radians(pan),4,'Z')@Matrix.Translation((0,-.055,-.024))
-    tilt=Matrix.Translation((0,.110,.024))@Matrix.Rotation(math.radians(-12),4,'X')@Matrix.Translation((0,-.110,-.024))
+    tilt=Matrix.Translation((0,.110,.024))@Matrix.Rotation(math.radians(-10),4,'X')@Matrix.Translation((0,-.110,-.024))
     for n,data,m in original:
         o=bpy.data.objects.new(name+' / '+n,data.copy());scene.collection.objects.link(o)
         moving=not (n.startswith('Part_1') or n.startswith('Yaw_'))
@@ -125,7 +125,7 @@ def mounted(name,wall,rotation,pan):
     points=[base@yaw@tilt@Vector((.009,.14,.075)),base@Vector((.02,.10,-.03)),base@Vector((.012,.018,-.14)),base@Vector((.012,.018,-wall[2]+.09))]
     curve(name+' cable service loop',points,.002,black)
     o=box(name+' slim wall cable cover',(.012,.009,(-wall[2]+.09-.14)/2),(.017,.010,wall[2]-.23),plaster,.003);transform(o,base)
-    mount_locations.append(dict(name=name,wall_position_m=wall,pan_deg=pan,tilt_deg=-12))
+    mount_locations.append(dict(name=name,wall_position_m=wall,pan_deg=pan,tilt_deg=-10))
 
 # Room: front at Y=0, seating faces the TV, surrounds on side walls behind seating.
 box('Floor foundation',(0,2.7,-.085),(4.8,5.6,.16),oak)
@@ -253,7 +253,7 @@ for _ in range(30):
     if all(.075 < p.x < .925 and .075 < p.y < .925 for p in projected):break
     wide.data.lens*=.97
 print('SHOWCASE_LENS',wide.data.lens)
-scene['Description']='Illustrative 5.1 living room; actual revision 2 mount meshes; unbranded speakers matching the CAD cabinet envelope.'
+scene['Description']='Illustrative 5.1 living room; actual revision 3 mount meshes; unbranded speakers matching the CAD cabinet envelope.'
 (OUT/'scene_manifest.json').write_text(json.dumps({'units':'metres','speaker_cabinet_mm':[150,150,180],'mount_source':'output_blender/surround_mount.blend','surrounds':mount_locations},indent=2))
 bpy.ops.wm.save_as_mainfile(filepath=str(OUT/'living_room.blend'))
 for cam,name,size in [(wide,'living-room',(2000,1400)),(close,'mount-in-use',(1800,1500))]:

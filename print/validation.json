@@ -1,35 +1,32 @@
 {
-  "Part_1_WallPlate.stl": {
-    "closed_solid": true,
-    "nonmanifold_edges": false,
-    "facets": 36268,
-    "dimensions_mm": [
+  "Part_1_WallPlate": {
+    "valid": true,
+    "solids": 1,
+    "volume_mm3": 188752.150267587,
+    "print_bounds_mm": [
       140.0,
-      76.995,
-      90.0
-    ],
-    "sha256": "af19581537717be13e233f9c3df94b5052b421c679d86e53d3bae390f704aadd"
+      76.99472985747484,
+      90.00000000000001
+    ]
   },
-  "Part_2_SwivelArm.stl": {
-    "closed_solid": true,
-    "nonmanifold_edges": false,
-    "facets": 42076,
-    "dimensions_mm": [
-      44.0,
-      98.99,
-      48.6
-    ],
-    "sha256": "c270b5568fd3b80e0854590ca0bbde582f28ef364803402940cb4ff4894e3750"
+  "Part_2_SwivelArm": {
+    "valid": true,
+    "solids": 1,
+    "volume_mm3": 96682.77495945313,
+    "print_bounds_mm": [
+      44.00000000000001,
+      98.99027488340828,
+      48.60000000000001
+    ]
   },
-  "Part_3_Cradle.stl": {
-    "closed_solid": true,
-    "nonmanifold_edges": false,
-    "facets": 54000,
-    "dimensions_mm": [
-      68.4,
-      214.996,
+  "Part_3_Cradle": {
+    "valid": true,
+    "solids": 1,
+    "volume_mm3": 520532.52697352215,
+    "print_bounds_mm": [
+      68.40000000000005,
+      214.99608289101576,
       186.0
-    ],
-    "sha256": "0bfcc5e900d86d99d885e9d1184274ad02ac253999b54c5b5689c0ec4149e95b"
+    ]
   }
 }
