@@ -19,6 +19,18 @@ Your terminal description is interpreted as a centered 40 mm-wide panel (150 −
 
 The compact geometry reduces the free arm span, but stiffness has not been measured. A lower pivot also changes the gravity torque at downward tilt: the load notes below have been updated rather than assuming every load decreases. `revision_1_original.zip` preserves the previous design locally; the main ZIP contains only revision 2.
 
+## How this will look
+
+A Blender living-room showcase places the actual mount geometry in an illustrative
+surround setup with a TV, couch and mounted speakers. The unbranded cabinets match
+the design envelope; these are concept renders, not a tested installation.
+
+![Living-room surround setup](showcase/living-room.png)
+
+![Mount with speaker installed](showcase/mount-in-use.png)
+
+See [showcase/](showcase/) for the editable Blender scene, rendering script and details.
+
 ## Interactive assemblies
 
 Open `output_blender/interactive_assembly.blend` or `output_freecad/interactive_assembly.FCStd` to pose the mount. See [INTERACTIVE_ASSEMBLY.md](INTERACTIVE_ASSEMBLY.md) for the two angle controls and optional FreeCAD slider macro.

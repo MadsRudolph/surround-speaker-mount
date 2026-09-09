@@ -1,0 +1,31 @@
+{
+  "units": "metres",
+  "speaker_cabinet_mm": [
+    150,
+    150,
+    180
+  ],
+  "mount_source": "output_blender/surround_mount.blend",
+  "surrounds": [
+    {
+      "name": "Surround left",
+      "wall_position_m": [
+        -2.31,
+        3.95,
+        1.55
+      ],
+      "pan_deg": -28,
+      "tilt_deg": -12
+    },
+    {
+      "name": "Surround right",
+      "wall_position_m": [
+        2.31,
+        3.95,
+        1.55
+      ],
+      "pan_deg": 28,
+      "tilt_deg": -12
+    }
+  ]
+}
