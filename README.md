@@ -1,5 +1,7 @@
 # Surround speaker wall mount — compact revision 3
 
+The **[Eris E3.5 dorm-room rail adaptation](rail-mount/README.md)** has its own CAD, print files, concrete-through-rail fixing layout and furnished room renders. It provides ±90° pan and 0–60° indexed downward tilt; see its separate prototype and installation notes.
+
 Three printed parts per speaker, identical for left and right. Default cabinet: **150 × 150 × 180 mm**. Designed motion: **continuous ±60° yaw; 0° to −30° pitch in 5° steps**. All CAD coordinates and STL coordinates are millimetres. This is an unqualified prototype: speaker mass, cabinet construction and wall substrate were not supplied; panel height and plug projection remain unconfirmed. There is no assigned safe working load or claim of permanent freedom from droop.
 
 

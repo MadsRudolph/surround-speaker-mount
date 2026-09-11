@@ -1,0 +1,61 @@
+{
+  "ear_world_mm": [
+    350.0,
+    3352.974435,
+    1400.0
+  ],
+  "ear_position_is_estimated": true,
+  "tweeter_local_mm": [
+    0,
+    401,
+    66
+  ],
+  "tweeter_position_is_approximate": true,
+  "rail_face_world_x_mm": 40,
+  "rail_centre_height_mm": 2075,
+  "placements": [
+    {
+      "name": "Surround_right",
+      "rail_centre_along_room_mm": 2646.0,
+      "pan_deg": 76.09682965212474,
+      "ideal_tilt_deg": -55.53759079246989,
+      "installed_tilt_deg": -55,
+      "tweeter_world_mm": [
+        243.60614197692567,
+        2923.1587912095247,
+        2046.5047292117606
+      ],
+      "distance_to_ears_mm": 783.6003481145391,
+      "aim_error_deg": 0.5929477982141497,
+      "fixing_along_room_mm": [
+        2581.0,
+        2711.0
+      ]
+    },
+    {
+      "name": "Surround_left",
+      "rail_centre_along_room_mm": 4060.0,
+      "pan_deg": -76.09779608650554,
+      "ideal_tilt_deg": -55.534877116265754,
+      "installed_tilt_deg": -55,
+      "tweeter_world_mm": [
+        243.6014670018016,
+        3782.840051618414,
+        2046.5047292117606
+      ],
+      "distance_to_ears_mm": 783.6283947561303,
+      "aim_error_deg": 0.5899537919178879,
+      "fixing_along_room_mm": [
+        3995.0,
+        4125.0
+      ]
+    }
+  ],
+  "room_clearance": {
+    "poses_across_two_mounts": 494,
+    "minimum_end_opposite_wall_floor_or_ceiling_clearance_mm": 15.080886013677912,
+    "collisions": [],
+    "scope": "Rigid parts, cabinet, connector allowance and moving hardware; room end planes, opposite wall, ceiling and floor."
+  },
+  "channel_reference": "Left/right as heard while sitting in bed facing the TV; window-side is right."
+}

@@ -1,0 +1,32 @@
+{
+  "Rail_Shoe": {
+    "valid": true,
+    "solids": 1,
+    "volume_mm3": 351247.39139317966,
+    "print_dimensions_mm": [
+      61.000000000000014,
+      160.9940465028018,
+      180.0
+    ]
+  },
+  "Pan_Yoke": {
+    "valid": true,
+    "solids": 1,
+    "volume_mm3": 442102.57077486324,
+    "print_dimensions_mm": [
+      63.999092950819076,
+      242.98505642096268,
+      221.0
+    ]
+  },
+  "Eris_Cradle": {
+    "valid": true,
+    "solids": 1,
+    "volume_mm3": 764432.4534107893,
+    "print_dimensions_mm": [
+      151.00000000000006,
+      180.0,
+      188.8
+    ]
+  }
+}

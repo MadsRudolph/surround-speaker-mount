@@ -1,0 +1,16 @@
+[
+  {
+    "mount": "Surround_right",
+    "initial_tweeter_error_m": 2.457562461863554e-07,
+    "pan_moves_yoke_and_cradle": true,
+    "tilt_moves_only_cradle": true,
+    "shoe_remains_fixed": true
+  },
+  {
+    "mount": "Surround_left",
+    "initial_tweeter_error_m": 6.784529946942455e-07,
+    "pan_moves_yoke_and_cradle": true,
+    "tilt_moves_only_cradle": true,
+    "shoe_remains_fixed": true
+  }
+]

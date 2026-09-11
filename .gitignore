@@ -9,3 +9,17 @@ surround-speaker-mount.zip
 *.log
 core
 core.*
+
+# Room-render assets for the Eris rail mount. These are large binaries and the
+# room mesh is imported user geometry rather than anything the scripts rebuild,
+# so they are kept out of the repository; rail-mount/package.py rebuilds the
+# distributable zip from a local working copy.
+rail-mount/dorm-room-render-pack.zip
+rail-mount/dorm-room-render-pack/
+rail-mount/eris-rail-mount-design.zip
+rail-mount/render/dorm_room.blend
+rail-mount/render/room_meshes.json
+
+# separate local studies, not part of the mount
+room-study/
+web/

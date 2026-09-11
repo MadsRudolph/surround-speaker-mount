@@ -1,0 +1,12 @@
+{
+  "Female_5deg": {
+    "valid": true,
+    "solids": 1,
+    "volume_mm3": 12052.929544884762
+  },
+  "Male_5deg": {
+    "valid": true,
+    "solids": 1,
+    "volume_mm3": 13163.698013212701
+  }
+}

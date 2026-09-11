@@ -1,0 +1,32 @@
+{
+  "revision": "1.1",
+  "scope": "Nominal tool-envelope access, not a guarantee for every purchased spanner/socket. Speaker foam must be relieved around the tool opening.",
+  "tool_samples": 78,
+  "collisions": [],
+  "spanner_envelope": {
+    "head_outer_diameter_mm": 30,
+    "thickness_mm": 4,
+    "handle_width_mm": 12,
+    "handle_reach_from_bolt_mm": 100,
+    "handle_swing_deg": [
+      -15,
+      15
+    ],
+    "initial_gap_to_speaker_mm": 2.9,
+    "recess_diameter_mm": 32
+  },
+  "socket_envelope": {
+    "outer_diameter_mm": 20,
+    "length_mm": 40,
+    "access": "straight from outside the yoke; target nut excluded"
+  },
+  "tool_coupon": {
+    "closed_solid": true,
+    "volume_mm3": 57300.60546875,
+    "print_bounds_mm": [
+      67.0,
+      70.0,
+      17.500000000000014
+    ]
+  }
+}
